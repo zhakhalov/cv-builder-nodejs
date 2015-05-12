@@ -1,0 +1,79 @@
+<div class="page">
+      <div class="row">
+        <div class="col-xs-7">
+          <table class="table">
+            <tr>
+              <td><h3>{{user.firstName + ' ' + user.lastName}}</h3></td>
+            </tr>
+            <tr>
+              <td></td>
+            </tr>
+          </table>
+          <i class="fa fa-crosshairs"></i><i>Objective:</i> {{user.objective}}
+        </div>
+        <div class="col-xs-5">
+          <table class="table">
+            <tr>
+              <td><i class="fa fa-envelope"></i> {{user.email}}</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-phone"></i> {{user.tel}}</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-home"></i> {{user.address}}</td>
+            </tr>
+            <tr>
+              <td><i class="fa fa-skype"></i> {{user.skype}}</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="well well-sm">
+        <h5 class="page-header"><i class="fa fa-tags"></i> Languages and Technologies</h5>
+        <span class="label label-default" ng-repeat="item in user.skills">{{item.name}}</span>
+      </div>
+      <div class="well well-sm">
+        <h5 class="page-header"><i class="fa fa-briefcase"></i> Experience</h5>
+  
+        <div class="row" ng-repeat="item in user.experience">
+          <div class="col-xs-9">
+            <span class="h5">{{item.position}}</span> at {{item.company}}
+          </div>
+          <div class="col-xs-3">
+            <i class="fa fa-calendar"></i> {{item.startAt | date: 'MMM. yyyy'}} -
+            <span ng-if="item.present">present</span>
+            <span ng-if="!item.present">{{item.endAt | date: 'MMM. yyyy'}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="well well-sm">
+        <h5 class="page-header"><i class="fa fa-graduation-cap"></i> Education</h5>
+  
+        <div class="row" ng-repeat="item in user.education">
+          <div class="col-xs-9">
+            <span class="h5">{{item.institution}}</span>
+          </div>
+          <div class="cv-col-xs-3">
+            <i class="fa fa-calendar"></i> {{item.startAt | date: 'MMM. yyyy'}} -
+            <span ng-if="item.present">present</span>
+            <span ng-if="!item.present">{{item.endAt | date: 'MMM. yyyy'}}</span>
+          </div>
+          <ul>
+            <li ng-if="!item.present">{{item.degree}}'s degree</li>
+            <li>Specialization - {{item.specialization}}</li>
+          </ul>
+        </div>
+      </div>
+      <div class="well well-sm">
+        <h5 class="page-header"><i class="fa fa-info-circle"></i> Additional information</h5>
+  
+        <div class="row">
+          <div class="col-xs-4">
+            <i class="fa fa-language"></i> Languages:
+            <ul>
+              <li ng-repeat="item in user.languages"><i>{{item.name}}</i> - {{item.level}}</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
