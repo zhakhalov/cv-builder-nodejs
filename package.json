@@ -32,5 +32,8 @@
     "grunt-contrib-uglify": "^0.9.1"
   },
   "private": true,
-  "main": "server.js"
+  "main": "server.js",
+  "scripts": {
+    "start": "supervisor server.js"
+  }
 }

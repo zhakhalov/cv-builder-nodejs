@@ -16,6 +16,7 @@ var bodyParser = require('body-parser');
 //-----------------------------------------------------------------
 
 var dbConfig = require('./config/db-cfg.js');
+var serverConfig = require('./config/server-cfg.js');
 
 //-----------------------------------------------------------------
 // controllers
@@ -57,7 +58,7 @@ mongoose.connect(dbConfig.connection, function (err) {
   }
 });
 
-server.listen(process.env.PORT || 1337, process.env.IP || '127.0.0.1', function () {
+server.listen(serverConfig.port, serverConfig.ip, function () {
   var addr = server.address();
   console.log('server started at ' + addr.port);
 });
