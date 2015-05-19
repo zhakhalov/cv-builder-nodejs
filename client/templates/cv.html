@@ -1,0 +1,457 @@
+<h1 class="page-header">CV Builder</h1>
+<tabset>
+<!-- ========================================= GENERAL TAB ========================================= -->
+<tab>
+  <tab-heading><i class="fa fa-user"></i>General information</tab-heading>
+  <form name="formGeneral">
+    <div class="form-group">
+      <label>First name:</label>
+      <input class="form-control"
+             type="text"
+             name="firstName"
+             ng-model="user.firstName"
+             required/>
+      <ng-messages ng-show="formGeneral.firstName.$dirty" for="formGeneral.firstName.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+    <div class="form-group">
+      <label>Last name:</label>
+      <input class="form-control"
+             type="text"
+             name="firstName"
+             ng-model="user.lastName"
+             required/>
+      <ng-messages ng-show="formGeneral.firstName.$dirty" for="formGeneral.firstName.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+    <div class="form-group">
+      <label>Date of birth:</label>
+      <input type="text"
+                   class="form-control"
+                   data-date-format="dd MMM. yyyy" 
+                   bs-datepicker
+                   ng-model="user.dateOfBirth"/>
+      <ng-messages ng-show="formGeneral.firstName.$dirty" for="formGeneral.firstName.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+    <div class="form-group">
+      <label>Address:</label>
+      <input class="form-control"
+             type="text"
+             name="address"
+             ng-model="user.address"
+             required/>
+      <ng-messages ng-show="formGeneral.address.$dirty" for="formGeneral.address.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+    <div class="form-group">
+      <label>Telephone number:</label>
+      <input class="form-control"
+             type="tel"
+             name="tel"
+             ng-model="user.tel"
+             required/>
+      <ng-messages ng-show="formGeneral.firstName.$dirty" for="formGeneral.firstName.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+    <div class="form-group">
+      <label>E-mail:</label>
+      <input class="form-control"
+             type="email"
+             name="email"
+             ng-model="user.email"
+             disabled
+             required/>
+      <ng-messages ng-show="formGeneral.firstName.$dirty" for="formGeneral.firstName.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+    <div class="form-group">
+      <label>Skype:</label>
+      <input class="form-control"
+             type="text"
+             name="skype"
+             ng-model="user.skype"
+             required/>
+      <ng-messages ng-show="formGeneral.firstName.$dirty" for="formGeneral.firstName.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+    <div class="form-group">
+      <label>Objective:</label>
+      <input class="form-control"
+             type="text" 
+             name="objective"
+             ng-model="user.objective"
+             ng-model-options="{ getterSetter: true }"
+             required/>
+      <ng-messages ng-show="formGeneral.objective.$dirty" for="formGeneral.objective.$error">
+        <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+      </ng-messages>
+    </div>
+  </form>
+</tab>
+<!-- ========================================= SKILLS TAB ========================================= -->
+<tab>
+  <tab-heading><i class="fa fa-tags"></i>Skills</tab-heading>
+  <table class="table table-hover">
+    <tbody ui-sortable="{ axis: 'y' }" ng-model="user.skills">
+      <tr ng-repeat="item in user.skills" style="dysplay: table" ng-controller="ListItemCtrl" ng-init="initialize('templates/edit-skill.html', 'skills')">
+        <td class="col-md-8">
+          <div class="h5">{{item.name}}</div>
+          <div class="h6">{{item.level}}</div>
+        </td>
+        <td class="col-md-2">
+          <div>
+            <button class="btn btn-sm btn-primary btn-block" ng-click="edit()">
+              <i class="fa fa-edit"></i> Edit
+            </button>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-danger btn-block" ng-click="remove()">
+              <i class="fa fa-minus-circle"></i> Remove
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- ========================================= ADD NEW SKILL ========================================= -->
+  <form ng-controller="AddListItemCtrl" name="form" ng-init="initialize('skills')">
+    <fieldset>
+      <legend>Add skill:</legend>
+      <div class="form-group">
+        <label>Name:</label>
+        <input class="form-control"
+               type="text"
+               name="name"
+               ng-model="item.name"
+               required/>
+        <ng-messages ng-show="form.name.$dirty" for="form.name.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>Level:</label>
+        <select class="form-control"
+                ng-model="item.level"
+                name="level"
+                ng-options="f for f in ['Beginner', 'Good', 'Strong']"
+                required>
+          <option></option>
+        </select>
+        <ng-messages ng-show="form.level.$dirty" for="form.level.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-success btn-block"
+                    ng-disabled="form.$invalid"
+                    ng-click="add()">
+              <i class="fa fa-plus-circle"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</tab>
+<!-- ========================================= EXPERIENCE TAB ========================================= -->
+<tab>
+  <tab-heading><i class="fa fa-briefcase"></i>Experience</tab-heading>
+  <table class="table table-hover">
+    <tbody ui-sortable="{ axis: 'y' }" ng-model="user.experience">
+      <tr ng-repeat="item in user.experience" style="dysplay: table" ng-controller="ListItemCtrl" ng-init="initialize('templates/edit-exp.html', 'experience')">
+        <td class="col-md-8">
+          <div class="col-xs-9">
+            <span class="h5">{{item.position}}</span> at {{item.company}}
+          </div>
+          <div class="col-xs-3">
+            <i class="fa fa-calendar"></i> {{item.startAt | date: 'MMM. yyyy'}} -
+            <span ng-if="item.present">present</span>
+            <span ng-if="!item.present">{{item.endAt | date: 'MMM. yyyy'}}</span>
+          </div>
+        </td>
+        <td class="col-md-2">
+          <div>
+            <button class="btn btn-sm btn-primary btn-block" ng-click="edit()">
+              <i class="fa fa-edit"></i> Edit
+            </button>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-danger btn-block" ng-click="remove()">
+              <i class="fa fa-minus-circle"></i> Remove
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- ========================================= ADD NEW EXPERIENCE ========================================= -->
+  <form ng-controller="AddListItemCtrl" name="form" ng-init="initialize('experience')">
+    <fieldset>
+      <legend>Add experience:</legend>
+      <div class="form-group">
+        <label>Company:</label>
+        <input class="form-control" 
+               type="text" 
+               name="company"
+               ng-model="item.company" 
+               required/>
+        <ng-messages ng-show="form.company.$dirty" for="form.company.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>Position:</label>
+        <input class="form-control" 
+               type="text" 
+               name="position"
+               ng-model="item.position" 
+               required/>
+        <ng-messages ng-show="form.position.$dirty" for="form.position.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>Start date:</label>
+        <input type="text"
+               name="startAt"
+               class="form-control"
+               data-date-format="dd MMM. yyyy" 
+               bs-datepicker
+               ng-model="item.startAt"/>
+        <ng-messages ng-show="form.startAt.$dirty" for="form.startAt.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>End date:</label>
+        <input type="text"
+               name="position"
+               class="form-control"
+               data-date-format="dd MMM. yyyy" 
+               bs-datepicker
+               ng-model="item.endAt"
+               required/>
+        <ng-messages ng-show="form.endAt.$dirty" for="form.endAt.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-success btn-block"
+                    ng-disabled="form.$invalid"
+                    ng-click="add()">
+              <i class="fa fa-plus-circle"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</tab>
+<!-- ========================================= EDUCATION TAB ========================================= -->
+<tab>
+  <tab-heading><i class="fa fa-graduation-cap"></i>Education</tab-heading>
+  <table class="table table-hover">
+    <tbody ui-sortable="{ axis: 'y' }" ng-model="user.education">
+      <tr ng-repeat="item in user.education" style="dysplay: table" ng-controller="ListItemCtrl" ng-init="initialize('templates/edit-edu.html', 'education')">
+        <td class="col-md-8">
+          <div class="col-xs-9">
+            <span class="h5">{{item.institution}}</span>
+          </div>
+          <div class="cv-col-xs-3">
+            <i class="fa fa-calendar"></i> {{item.startAt | date: 'MMM. yyyy'}} -
+            <span ng-if="item.present">present</span>
+            <span ng-if="!item.present">{{item.endAt | date: 'MMM. yyyy'}}</span>
+          </div>
+          <ul>
+            <li ng-if="!item.present">{{item.degree}}'s degree</li>
+            <li>Specialization - {{item.specialization}}</li>
+          </ul>
+        </td>
+        <td class="col-md-2">
+          <div>
+            <button class="btn btn-sm btn-primary btn-block" ng-click="edit()">
+              <i class="fa fa-edit"></i> Edit
+            </button>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-danger btn-block" ng-click="remove()">
+              <i class="fa fa-minus-circle"></i> Remove
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- ========================================= ADD NEW EDUCATION ========================================= -->
+  <form ng-controller="AddListItemCtrl" name="form" ng-init="initialize('education')">
+    <fieldset>
+      <legend>Add education:</legend>
+      <div class="form-group">
+        <label>Institution:</label>
+        <input class="form-control" 
+               type="text" 
+               name="institution"
+               ng-model="item.institution" 
+               required/>
+        <ng-messages ng-show="form.institution.$dirty" for="form.institution.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>Specialization:</label>
+        <input class="form-control" 
+               type="text" 
+               name="specialization"
+               ng-model="item.specialization" 
+               required/>
+        <ng-messages ng-show="form.specialization.$dirty" for="form.specialization.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>Degree:</label>
+        <input class="form-control" 
+               type="text" 
+               name="degree"
+               ng-model="item.degree" 
+               required/>
+        <ng-messages ng-show="form.degree.$dirty" for="form.degree.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>Start date:</label>
+        <input type="text"
+               name="startAt"
+               class="form-control"
+               data-date-format="dd MMM. yyyy" 
+               bs-datepicker
+               ng-model="item.startAt"/>
+        <ng-messages ng-show="form.startAt.$dirty" for="form.startAt.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>End date:</label>
+        <input type="text"
+               name="position"
+               class="form-control"
+               data-date-format="dd MMM. yyyy" 
+               bs-datepicker
+               ng-model="item.endAt"
+               required/>
+        <ng-messages ng-show="form.endAt.$dirty" for="form.endAt.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-success btn-block"
+                    ng-disabled="form.$invalid"
+                    ng-click="add()">
+              <i class="fa fa-plus-circle"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</tab>
+<!-- ========================================= LANGUAGES TAB ========================================= -->
+<tab>
+  <tab-heading><i class="fa fa-language"></i>Languages</tab-heading>
+  <table class="table table-hover">
+    <tbody ui-sortable="{ axis: 'y' }" ng-model="user.languages">
+      <tr ng-repeat="item in user.languages" style="dysplay: table" ng-controller="ListItemCtrl" ng-init="initialize('templates/edit-lang.html', 'languages')">
+        <td class="col-md-8">
+          <div class="h5">{{item.name}}</div>
+          <div class="h6">{{item.level}}</div>
+        </td>
+        <td class="col-md-2">
+          <div>
+            <button class="btn btn-sm btn-primary btn-block" ng-click="edit()">
+              <i class="fa fa-edit"></i> Edit
+            </button>
+          </div>
+          <div>
+            <button class="btn btn-sm btn-danger btn-block" ng-click="remove()">
+              <i class="fa fa-minus-circle"></i> Remove
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <!-- ========================================= ADD NEW LANGUAGE ========================================= -->
+  <form ng-controller="AddListItemCtrl" name="form" ng-init="initialize('languages')">
+    <fieldset>
+      <legend>Add language:</legend>
+      <div class="form-group">
+        <label>Name:</label>
+        <input class="form-control"
+               type="text"
+               name="name"
+               ng-model="item.name"
+               required/>
+        <ng-messages ng-show="form.name.$dirty" for="form.name.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <label>Level:</label>
+        <select class="form-control"
+                ng-model="item.level"
+                name="level"
+                ng-options="f for f in ['Beginner', 'Intermediate', 'Advanced', 'Native']"
+                required>
+          <option></option>
+        </select>
+        <ng-messages ng-show="form.level.$dirty" for="form.level.$error">
+          <ng-message class="label label-danger" when="required">This field cannot be empty</ng-message>
+        </ng-messages>
+      </div>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-md-2">
+            <button class="btn btn-success btn-block"
+                    ng-disabled="form.$invalid"
+                    ng-click="add()">
+              <i class="fa fa-plus-circle"></i> Add
+            </button>
+          </div>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</tab>
+<!-- ========================================= PREVIEW ========================================= -->
+<tab>
+  <tab-heading><i class="fa fa-user"></i>Preview</tab-heading>
+  <div ng-include="'templates/preview.html'"></div>
+</tab>
+</tabset>
+<hr/>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <button class="btn btn-success btn-block"
+            ng-disabled="formGeneral.$invalid"
+            ng-click="save()">
+      <i class="fa fa-spinner fa-pulse"
+         ng-show="pending">
+      </i> Save
+    </button>
+  </div>
+</div>

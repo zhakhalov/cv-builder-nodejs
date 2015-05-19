@@ -1,9 +1,12 @@
 (function(ng) {
   ng.module('app')
-  .service('UsersSvc', ['$http', 'REST_API_ROOT', '$resource', '$q',
-    function ($http, REST_API_ROOT, $resource, $q) {
+  .service('UsersSvc', ['$http', 'REST_API_ROUTE', '$resource', '$q', '$injector',
+    function ($http, REST_API_ROUTE, $resource, $q, $injector) {
+      
+      var _users = {};
+      var _userId;
       var self = this;
-      var Users = $resource(REST_API_ROOT + '/users/:userId',
+      var Users = $resource(REST_API_ROUTE + 'users/:userId',
       { userId:'@id' },
       { 
         query: { method: 'GET', isArray: true},
@@ -78,6 +81,30 @@
               error();
             }
           });
+        });
+      };
+      /**
+       * Gets/Sets current user.
+       * @param user current user.
+       * @return {Object} Current user.
+       */
+      self.user = function (user) {
+        if ('undefined' === typeof user) { return _users[_userId]; }
+        _userId = user._id;
+        _users[_userId] = user;
+      };
+      /**
+       * Sets authorization header.
+       * @param header authorization header.
+       */
+      self.authorization = function (header) {
+        Users = $resource(REST_API_ROUTE + 'users/:userId',
+        { userId:'@id' },
+        { 
+          query: { method: 'GET', isArray: true, headers: { Authorization: header }},
+          get: { method: 'GET', headers: { Authorization: header } },
+          save: { method: 'POST', headers: { Authorization: header } },
+          update: { method: 'PUT', headers: { Authorization: header } },
         });
       };
     }]);

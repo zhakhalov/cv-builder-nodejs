@@ -3,23 +3,17 @@
   /**
    * Controls all application
    */
-  .controller('CvCtrl', ['$scope', '$rootScope', '$log', 'UsersSvc', '_', 'USER_ID',
-    function ($scope, $rootScope, $log, UsersSvc, _, USER_ID) {
-      $scope.user = {
-        skills: [],
-        experience: [],
-        education: [],
-        languages: []
-      };
-      UsersSvc.getUser(USER_ID, function (user) {
-        $scope.user = user;
-        user.skills = user.skills || [];
-        user.experience = user.experience || [];
-        user.education = user.education || [];
-        user.languages = user.languages || [];
-      }, function (err) {
-        $log.error(err);
-      });
+  .controller('CvCtrl', ['$scope', '$rootScope', '$log', 'AuthSvc', 'UsersSvc', '_', '$location',
+    function ($scope, $rootScope, $log, AuthSvc, UsersSvc, _, $location) {
+      if (!AuthSvc.isAuthenticated()) {
+        $location.path('/');  
+      } else {
+        $scope.user = UsersSvc.user();
+        $scope.user.skills = $scope.user.skills || [];
+        $scope.user.experience = $scope.user.experience || [];
+        $scope.user.education = $scope.user.education || [];
+        $scope.user.languages = $scope.user.languages || [];  
+      }
       
       // --- $rootScope.$on
       $rootScope.$on('collections:update', function () {

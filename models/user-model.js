@@ -8,7 +8,6 @@ var SkillSchema = new mongoose.Schema({
 var ExpSchema = new mongoose.Schema({
   startAt: { type: Date, default: Date.now },
   endAt: { type: Date, default: Date.now },
-  present: { type:Boolean, default: false },
   company: { type:String ,required: true },
   position: { type:String ,required: true }
 });
@@ -16,7 +15,6 @@ var ExpSchema = new mongoose.Schema({
 var EduSchema = new mongoose.Schema({
   startAt: { type: Date, default: Date.now },
   endAt: { type: Date, default: Date.now },
-  present: { type:Boolean, default: false },
   institution: { type:String ,required: true },
   spec: { type:String ,required: true },
   degree: { type:String ,required: true }
@@ -28,14 +26,17 @@ var LangSchema = new mongoose.Schema({
 });
 
 var UserSchema = new mongoose.Schema({
-  firstName: { type: String, required: true },
-  lastName: { type: String, required: true},
   email: { type: String, required: true},
-  tel: { type: String, required: true},
-  skype: { type: String, required: true},
-  address: { type: String, required: true},
-  dateOfBirth: { type: Date, required: true},
-  objective: { type: String, required: true},
+  password: { type: String },
+  firstName: { type: String },
+  lastName: { type: String },
+  gender: { type:String, enum: ['male', 'female'] },
+  marital: { type:String, enum: ['single', 'married'] },
+  tel: { type: String },
+  skype: { type: String },
+  address: { type: String },
+  dateOfBirth: { type: Date },
+  objective: { type: String },
   skills: [SkillSchema],
   experience: [ExpSchema],
   education: [EduSchema],

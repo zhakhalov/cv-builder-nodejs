@@ -38,58 +38,33 @@
       <div class="form-group">
         <label>Start date:</label>
         <div class="row">
-          <div class="col-md-6" ng-controller="DateCtrl" ng-init="initialize('startAt')">
-            <p class="input-group">
-              <input type="text"
-                     name="position"
-                     class="form-control"
-                     datepicker-popup="dd MMM. yyyy"
-                     ng-model="item.startAt"
-                     is-open="isOpen"
-                     close-text="Close"/>
-              <span class="input-group-btn">
-                <button type="button"
-                        class="btn btn-default"
-                        ng-click="open($event)">
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </span>
-            </p>
-          </div>
+          <input type="text"
+                 name="position"
+                 class="form-control"
+                 data-date-format="dd MMM. yyyy" 
+                 bs-datepicker
+                 ng-model="item.startAt"
+                 required/>
         </div>
       </div>
       <div class="form-group">
         <label>End date:</label>
         <div class="row">
-          <div class="col-md-6" ng-controller="DateCtrl" ng-init="initialize('endAt')">
-            <p class="input-group">
-              <input type="text"
-                     name="position"
-                     class="form-control"
-                     datepicker-popup="dd MMM. yyyy"
-                     ng-model="item.endAt"
-                     is-open="isOpen"
-                     ng-disabled="item.present"
-                     close-text="Close"
-                     required/>
-              <span class="input-group-btn">
-                <button type="button"
-                        class="btn btn-default"
-                        ng-disabled="item.present"
-                        ng-click="open($event)">
-                  <i class="fa fa-calendar"></i>
-                </button>
-              </span>
-            </p>
-          </div>
-          <div class="col-md-6 checkbox">
-            <lable>
-              <input type="checkbox"
-                     ng-model="item.present">
-              Present
-              </input>
-            </lable>
-          </div>
+          <input type="text"
+                 name="position"
+                 class="form-control"
+                 data-date-format="dd MMM. yyyy" 
+                 bs-datepicker
+                 ng-model="item.endAt"
+                 required/>
+          <!--<div class="col-md-6 checkbox">-->
+          <!--  <lable>-->
+          <!--    <input type="checkbox"-->
+          <!--           ng-model="item.present">-->
+          <!--    Present-->
+          <!--    </input>-->
+          <!--  </lable>-->
+          <!--</div>-->
         </div>
       </div>
       <div class="form-group">

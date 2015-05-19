@@ -2615,7 +2615,7 @@ input[type="search"] {
     min-height: 23px;
     padding-left: 20px;
     margin-bottom: 0;
-    font-weight: normal;
+    font-weight: bold;
     cursor: pointer;
 }
 .radio input[type="radio"],
@@ -4727,10 +4727,10 @@ fieldset[disabled] .navbar-inverse .btn-link:focus {
     /* display: inline; */
     padding: .2em .6em .3em;
     font-size: 85%;
-    /* font-weight: bold; */
+    font-weight: bold; 
     margin:2px;
     line-height: 1;
-    color: #222;
+    color: #fff;
     text-align: center;
     white-space: nowrap;
     vertical-align: baseline;
@@ -4786,6 +4786,10 @@ a.label:focus {
 }
 .label-danger {
     background-color: #e51c23;
+}
+.label-skill {
+  font-weight: normal;
+  color: #222;
 }
 .label-danger[href]:hover,
 .label-danger[href]:focus {
