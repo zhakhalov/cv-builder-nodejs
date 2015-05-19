@@ -1,22 +1,118 @@
+## Rest Api
 
-     ,-----.,--.                  ,--. ,---.   ,--.,------.  ,------.
-    '  .--./|  | ,---. ,--.,--. ,-|  || o   \  |  ||  .-.  \ |  .---'
-    |  |    |  || .-. ||  ||  |' .-. |`..'  |  |  ||  |  \  :|  `--, 
-    '  '--'\|  |' '-' ''  ''  '\ `-' | .'  /   |  ||  '--'  /|  `---.
-     `-----'`--' `---'  `----'  `---'  `--'    `--'`-------' `------'
-    ----------------------------------------------------------------- 
+## Authentication
+
+#### Sign In User
+
+||
+|--|--|
+|Url|_/api/auth/signin_| 
+|Method|__POST__|
+|Request data format|_JSON_|
+|Response data format|_JSON_|
+|Request body|`{ usenrame: {String}, password: {String} }`|
+|Response body|`{ user: {UserModel}, token: {String} }`|
+
+#### Sign Up User
+
+||
+|--|--|
+|Url|_/api/auth/signup_| 
+|Method|__POST__|
+|Request data format|_JSON_|
+|Response data format|_JSON_|
+|Request body|`{UserModel}`|
+|Response body|`{ user: {UserModel}, token: {String} }`|
 
 
-Welcome to your Node.js project on Cloud9 IDE!
+__Authorization header__ 
+```
+header = 'Bearer ' + token
+```
 
-This chat example showcases how to use `socket.io` with a static `express` server.
+## Users ##
 
-## Running the server
+#### Get all users
 
-1) Open `server.js` and start the app by clicking on the "Run" button in the top menu.
+||
+|--|--|
+|Url|_/api/users_| 
+|Method|__GET__|
+|Request data format|_JSON_|
+|Response data format|_JSON_|
+|Request body|`{ usenrame: {String}, password: {String} }`|
+|Response body|`{ user: {UserModel}, token: {String} }`|
+|Requires authorization|__NO__|
 
-2) Alternatively you can launch the app from the Terminal:
+#### Create user
 
-    $ node server.js
+||
+|--|--|
+|Url|_/api/users_| 
+|Method|__POST__|
+|Request data format|_JSON_|
+|Response data format|_JSON_|
+|Request body|`{ usenrame: {String}, password: {String} }`|
+|Response body|`{ user: {UserModel}, token: {String} }`|
+|Requires authorization|__YES__|
 
-Once the server is running, open the project in the shape of 'https://projectname-username.c9.io/'. As you enter your name, watch the Users list (on the left) update. Once you press Enter or Send, the message is shared with all connected clients.
+#### Update user
+
+||
+|--|--|
+|Url|_/api/users_| 
+|Method|__GET__|
+|Request data format|_JSON_|
+|Response data format|_JSON_|
+|Request body|`{ usenrame: {String}, password: {String} }`|
+|Response body|`{ user: {UserModel}, token: {String} }`|
+|Requires authorization|__YES__|
+
+
+## User data schema 
+
+```
+Skill: {
+  name: { type:String, required: true },
+  level: { type:String ,required: true }
+};
+
+Exp: {
+  startAt: { type: Date, default: Date.now },
+  endAt: { type: Date, default: Date.now },
+  company: { type:String ,required: true },
+  position: { type:String ,required: true }
+};
+
+Edu: {
+  startAt: { type: Date, default: Date.now },
+  endAt: { type: Date, default: Date.now },
+  institution: { type:String ,required: true },
+  spec: { type:String ,required: true },
+  degree: { type:String ,required: true }
+};
+
+Lang: {
+  name: { type: String, required: true },
+  level: { type: String, required: true}
+};
+
+User: {
+  email: { type: String, required: true},
+  password: { type: String },
+  firstName: { type: String },
+  lastName: { type: String },
+  gender: { type:String, enum: ['male', 'female'] },
+  marital: { type:String, enum: ['single', 'married'] },
+  tel: { type: String },
+  skype: { type: String },
+  address: { type: String },
+  dateOfBirth: { type: Date },
+  objective: { type: String },
+  skills: [SkillSchema],
+  experience: [ExpSchema],
+  education: [EduSchema],
+  languages: [LangSchema],
+  createdAt: { type: Date, default: Date.now },
+  updatedAt: { type: Date, default: Date.now }
+};```
