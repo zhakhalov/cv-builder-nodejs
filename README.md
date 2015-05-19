@@ -117,3 +117,5 @@ User: {
   updatedAt: { type: Date, default: Date.now }
 };
 ```
+#### Application deployed and running at http://cvbuildernodejs-zhakhalov.rhcloud.com/
+You can register on this service with any password (it will be hashed)
