@@ -4,25 +4,25 @@
 
 #### Sign In User
 
-||
-|--|--|
-|Url|_/api/auth/signin_| 
-|Method|__POST__|
-|Request data format|_JSON_|
-|Response data format|_JSON_|
-|Request body|`{ usenrame: {String}, password: {String} }`|
-|Response body|`{ user: {UserModel}, token: {String} }`|
+|                     |                                             |
+|---------------------|---------------------------------------------|
+|Url                  |_/api/auth/signin_                           | 
+|Method               |__POST__                                     |
+|Request data format  |_JSON_                                       |
+|Response data format |_JSON_                                       |
+|Request body         |`{ usenrame: {String}, password: {String} }` |
+|Response body        |`{ user: {UserModel}, token: {String} }`     |
 
 #### Sign Up User
 
-||
-|--|--|
-|Url|_/api/auth/signup_| 
-|Method|__POST__|
-|Request data format|_JSON_|
-|Response data format|_JSON_|
-|Request body|`{UserModel}`|
-|Response body|`{ user: {UserModel}, token: {String} }`|
+|                     |                                         |
+|---------------------|-----------------------------------------|
+|Url                  |_/api/auth/signup_                       | 
+|Method               |__POST__                                 |
+|Request data format  |_JSON_                                   |
+|Response data format |_JSON_                                   |
+|Request body         |`{UserModel}`                            |
+|Response body        |`{ user: {UserModel}, token: {String} }` |
 
 
 __Authorization header__ 
@@ -34,39 +34,39 @@ header = 'Bearer ' + token
 
 #### Get all users
 
-||
-|--|--|
-|Url|_/api/users_| 
-|Method|__GET__|
-|Request data format|_JSON_|
-|Response data format|_JSON_|
-|Request body|`{ usenrame: {String}, password: {String} }`|
-|Response body|`{ user: {UserModel}, token: {String} }`|
-|Requires authorization|__NO__|
+|                       |                                             |
+|-----------------------|---------------------------------------------|
+|Url                    |_/api/users_                                 | 
+|Method                 |__GET__                                      |
+|Request data format    |_JSON_                                       |
+|Response data format   |_JSON_                                       |
+|Request body           |`{ usenrame: {String}, password: {String} }` |
+|Response body          |`{ user: {UserModel}, token: {String} }`     |
+|Requires authorization |__NO__                                       |
 
 #### Create user
 
-||
-|--|--|
-|Url|_/api/users_| 
-|Method|__POST__|
-|Request data format|_JSON_|
-|Response data format|_JSON_|
-|Request body|`{ usenrame: {String}, password: {String} }`|
-|Response body|`{ user: {UserModel}, token: {String} }`|
-|Requires authorization|__YES__|
+|                       |               |
+|-----------------------|---------------|
+|Url                    |_/api/users_   | 
+|Method                 |__POST__       |
+|Request data format    |_JSON_         |
+|Response data format   |_JSON_         |
+|Request body           |`{UserModel}`  |
+|Response body          |`{UserModel}`  |
+|Requires authorization |__YES__        |
 
 #### Update user
 
-||
-|--|--|
-|Url|_/api/users_| 
-|Method|__GET__|
-|Request data format|_JSON_|
-|Response data format|_JSON_|
-|Request body|`{ usenrame: {String}, password: {String} }`|
-|Response body|`{ user: {UserModel}, token: {String} }`|
-|Requires authorization|__YES__|
+|                       |             |
+|-----------------------|-------------|
+|Url                    |_/api/users_ | 
+|Method                 |__GET__      |
+|Request data format    |_JSON_       |
+|Response data format   |_JSON_       |
+|Request body           |`{UserModel}`|
+|Response body          |`{UserModel}`|
+|Requires authorization |__YES__      |
 
 
 ## User data schema 
@@ -115,4 +115,5 @@ User: {
   languages: [LangSchema],
   createdAt: { type: Date, default: Date.now },
   updatedAt: { type: Date, default: Date.now }
-};```
+};
+```
