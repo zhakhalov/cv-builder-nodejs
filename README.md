@@ -11,7 +11,7 @@
 |Request data format  |_JSON_                                       |
 |Response data format |_JSON_                                       |
 |Request body         |`{ usenrame: {String}, password: {String} }` |
-|Response body        |`{ user: {UserModel}, token: {String} }`     |
+|Response body        |`{ user: {User}, token: {String} }`          |
 
 #### Sign Up User
 
@@ -21,8 +21,8 @@
 |Method               |__POST__                                 |
 |Request data format  |_JSON_                                   |
 |Response data format |_JSON_                                   |
-|Request body         |`{UserModel}`                            |
-|Response body        |`{ user: {UserModel}, token: {String} }` |
+|Request body         |`{User}`                                 |
+|Response body        |`{ user: {User}, token: {String} }`      |
 
 
 __Authorization header__ 
@@ -41,7 +41,7 @@ header = 'Bearer ' + token
 |Request data format    |_JSON_                                       |
 |Response data format   |_JSON_                                       |
 |Request body           |`{ usenrame: {String}, password: {String} }` |
-|Response body          |`{ user: {UserModel}, token: {String} }`     |
+|Response body          |`{ user: {User}, token: {String} }`          |
 |Requires authorization |__NO__                                       |
 
 #### Create user
@@ -52,8 +52,8 @@ header = 'Bearer ' + token
 |Method                 |__POST__       |
 |Request data format    |_JSON_         |
 |Response data format   |_JSON_         |
-|Request body           |`{UserModel}`  |
-|Response body          |`{UserModel}`  |
+|Request body           |`{User}`       |
+|Response body          |`{User}`       |
 |Requires authorization |__YES__        |
 
 #### Update user
@@ -61,11 +61,11 @@ header = 'Bearer ' + token
 |                       |             |
 |-----------------------|-------------|
 |Url                    |_/api/users_ | 
-|Method                 |__GET__      |
+|Method                 |__PUT__      |
 |Request data format    |_JSON_       |
 |Response data format   |_JSON_       |
-|Request body           |`{UserModel}`|
-|Response body          |`{UserModel}`|
+|Request body           |`{User}`|
+|Response body          |`{User}`|
 |Requires authorization |__YES__      |
 
 
