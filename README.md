@@ -10,7 +10,7 @@
 |Method               |__POST__                                     |
 |Request data format  |_JSON_                                       |
 |Response data format |_JSON_                                       |
-|Request body         |`{ usenrame: {String}, password: {String} }` |
+|Request body         |`{ login: {String}, password: {String} }`    |
 |Response body        |`{ user: {User}, token: {String} }`          |
 
 #### Sign Up User
@@ -40,8 +40,6 @@ header = 'Bearer ' + token
 |Method                 |__GET__                                      |
 |Request data format    |_JSON_                                       |
 |Response data format   |_JSON_                                       |
-|Request body           |`{ usenrame: {String}, password: {String} }` |
-|Response body          |`{ user: {User}, token: {String} }`          |
 |Requires authorization |__NO__                                       |
 
 #### Create user
